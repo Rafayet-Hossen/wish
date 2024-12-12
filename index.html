@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey My Love</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #ffe4e1;
+            color: #e76f51;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #countdown {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        #message {
+            font-size: 2rem;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="countdown">Loading...</div>
+    <div id="message">
+        <h1 style="color: pink;">❤️🎉Happy Birthday my love, My sunshine.Many Many happy returns of the day.Smile everyday my sweet heart❤️🎉</h1>
+        <img src="" alt="">
+    </div>
+
+    <script>
+        // Function to calculate the time difference
+        function calculateTimeDifference()
+        {
+            const now = new Date();
+            const nextMidnight = new Date();
+            nextMidnight.setHours(24, 0, 0, 0); // Set to 12:00 AM of the next day
+
+            const timeDifference = nextMidnight - now;
+
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            return { hours, minutes, seconds, timeDifference };
+        }
+
+        function startCountdown()
+        {
+            const countdownElement = document.getElementById("countdown");
+            const messageElement = document.getElementById("message");
+
+            const interval = setInterval(() =>
+            {
+                const { hours, minutes, seconds, timeDifference } = calculateTimeDifference();
+
+                if (timeDifference <= 0) {
+                    clearInterval(interval);
+                    countdownElement.style.display = "none";
+                    messageElement.style.display = "block";
+                    return;
+                }
+
+                countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+            }, 1000);
+        }
+
+        // Start the countdown when the page loads
+        startCountdown();
+    </script>
+</body>
+
+</html>
