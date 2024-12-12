@@ -58,14 +58,14 @@
     </div>
 
     <script>
-        // Function to calculate time difference until midnight
+        // Function to calculate time difference until 12:08 AM
         function calculateTimeDifference()
         {
             const now = new Date();
-            const nextMidnight = new Date();
-            nextMidnight.setHours(24, 0, 0, 0); // Set time to 12:00 AM of the next day
+            const targetTime = new Date();
+            targetTime.setHours(0, 10, 0, 0); // Set time to 12:08 AM
 
-            const timeDifference = nextMidnight - now;
+            const timeDifference = targetTime - now;
 
             const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
@@ -95,7 +95,7 @@
         }
 
         // Start the countdown on page load
-        startCountdown();
+        window.onload = startCountdown;
     </script>
 </body>
 
